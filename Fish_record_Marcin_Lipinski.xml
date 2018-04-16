@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FishRecord>
+    <fish>
+        <Species>Amur</Species>
+        <Date>14/04/2018</Date>
+        <ProtectionPeriod>false</ProtectionPeriod>
+        <Relased>true</Relased>
+        <Size>52</Size>
+        <Weight>1.6</Weight>
+    </fish>
+    <fish>
+        <Species>Okoń</Species>
+        <Date>14/04/2018</Date>
+        <ProtectionPeriod>false</ProtectionPeriod>
+        <Relased>false</Relased>
+        <Size>18</Size>
+        <Weight>0.95</Weight>
+    </fish>
+</FishRecord>
