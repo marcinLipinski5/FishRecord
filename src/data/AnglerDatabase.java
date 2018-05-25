@@ -6,8 +6,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
  
-//Class AnglerDatabase contains method to create angler array.
-//This array contains angler personal data
+
 @XmlRootElement(name="AnglerDatabase")
 public class AnglerDatabase {
    private static List<Angler> angler = new ArrayList<Angler>();

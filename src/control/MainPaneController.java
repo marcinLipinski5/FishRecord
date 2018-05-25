@@ -40,7 +40,7 @@ import utils.SpeciesDatabaseOperation;
 
 public class MainPaneController implements Initializable {
 
-	//Get instance of all needed classes
+	
 	AnglerDatabase anglerDatabase = new AnglerDatabase();
 	SpeciesDatabaseOperation speciesDatabaseOperation = new SpeciesDatabaseOperation();
 	FishInRecordOperation fishInRecordOperation = new FishInRecordOperation();
@@ -95,8 +95,7 @@ public class MainPaneController implements Initializable {
     @FXML
     private TextArea infoTextArea;
     
-    //Getters methods
-
+    
 	public String getSpeciesChoiceBox() {
 		return speciesChoiceBox.getValue().toString();
 	}
@@ -110,7 +109,7 @@ public class MainPaneController implements Initializable {
 	}
 
 	public Boolean getIsRelasedCheckBox() {
-		//Check the value of relased yes/no check boxes
+		
 		Boolean temp = true;
 		if(relasedCheckBoxYes.isSelected()) {
 			temp = true;
@@ -125,37 +124,31 @@ public class MainPaneController implements Initializable {
 		
 		initializeSpeciesDatabase();
 		
-		////////////////////////////////////////////
-		////  addToRecordButton////////////////////
-		//////////////////////////////////////////
+
 		addToRecordButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-				//At first try to load angler personals to avoid adding fish to record before
-				//initialize personal data
+
 				anglerDatabase.getAnglerDatabase().get(0);
-				//Sending strings written by user to method which is creating new FishInRecord object
+		
 				fishInRecordOperation.createNewRecord(getSpeciesChoiceBox(), getSizeTextField(), getWeightTextField(), getIsRelasedCheckBox() );
-				//Send to information text area texts about fish which is now added
+			
 				setInfoTextArea(fishInRecordOperation.getAddedFish());
 				setInfoTextArea(fishInRecordOperation.getProtectionPeriodInformation());
 				setInfoTextArea(fishInRecordOperation.getProtectionSizeInformation());
 				setInfoTextArea("----------------------------------------------------\n");
-				//Parsing new FishInRecord object to fish record xml file
+				
 				createXmlRecordDatabase.saveRecord();
 				}catch(IndexOutOfBoundsException ex) {
-				//Show an error pop-up window where user try to save record before loading personals data
+		
 					messageNoPersonalDataLoaded();
 				}
 				
 			}
 		});
 
-		////////////////////////////////////////////
-		////clearButton////////////////////////////
-		//////////////////////////////////////////	
-		//This button is clearing all text fields. Its just for speed up adding to record proces.
+	
 		clearButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -164,27 +157,16 @@ public class MainPaneController implements Initializable {
 			}
 		});
 		
-		////////////////////////////////////////////
-		////dateLabel//////////////////////////////
-		//////////////////////////////////////////
-		//Setting actual date to the dateLabel
+
 		CurrentDate currentDate = new CurrentDate();
 		dateLabel.setText(currentDate.getCurrentDate());
-		/////////////////////////////////////////////
-
-		//Setting an inform on the personalDataLabel. This string will disappear after loading angler personals from file
+	
 		personalDataLabel.setText("Please load personal data");
 
-		//////////////////////////////////////////////////////////////////
-		////////////// Set species to speciesChoiceBox///////////////////
-		////////////////////////////////////////////////////////////////
+
 		setSpeciesChoiceBox();
 
-		//////////////////////////////////////////////////////////////////
-		////////////// Set relased check boxes///////////////////////////
-		////////////////////////////////////////////////////////////////
-		//Two methods under this comments are checking check boxes "yes/no" to avoid situation
-		//where both are selected
+	
 		relasedCheckBoxYes.setSelected(true);
 		relasedCheckBoxYes.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
@@ -206,38 +188,34 @@ public class MainPaneController implements Initializable {
 		
 		
 
-		////////////////////////////////////////////////////////////////
-		////////////// Menu buttons////////////////////////////////////
-		//////////////////////////////////////////////////////////////
+
 		menuButtons();		
 
 	}
-	
-	//Setting information to informatin text area
+
 	public void setInfoTextArea(String information) {
 		if(information!=null) {
 		infoTextArea.appendText(information);
 		}
 	}
 	
-	//Reading angler personals from proper xml file
+
 	public void readPersonalData() {
 		ReadXmlAnglerDatabase xmlAnglerDatabase = new ReadXmlAnglerDatabase();
 		xmlAnglerDatabase.readFile();
 	}
 
-	//Settings angler personals to personals data label
+
 	public void setPersonalData() {
 		String personals = null;
-		//Where personals data are proper loaded and proper formatted personalsDataLabel
-		//is getting this values
+
 		if (anglerDatabase.getAnglerDatabase().get(0) != null) {
 			personals = anglerDatabase.getAnglerDatabase().get(0).getName() + " "
 					+ anglerDatabase.getAnglerDatabase().get(0).getSurname() + " "
 					+ anglerDatabase.getAnglerDatabase().get(0).getIdNumber();
 
 		} else {
-			//In other case this message appears at personaldDataLabel
+
 			personals = "Pleace load proper personals data";
 		}
 
@@ -245,11 +223,9 @@ public class MainPaneController implements Initializable {
 
 	}
 
-	//This method is operate at buttons from menu
+
 	public void menuButtons() {
-		/// addSpeciesMenuButton///
-		//This button is opening a new window AddFishPane.fxml
-		//This allows to add new species to speciesDatabase
+
 		addSpeciesMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -268,9 +244,7 @@ public class MainPaneController implements Initializable {
 			}
 		});
 		
-		/// addPersonalDataMenuButton///
-		//This button is opening a new window AddPersonalDataPane.fxml
-		//This allows to crate a new xml file with angler personal data
+
 		addPersonalDataMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -289,8 +263,7 @@ public class MainPaneController implements Initializable {
 			}
 		});
 
-		///loadPersonalDataMenuButton///
-		//This button allows to load angler personals from xml file
+
 		loadPersonalDataMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -299,8 +272,7 @@ public class MainPaneController implements Initializable {
 
 			}
 		});
-		///////////////////////////////
-		///This button allows to load fish record from xml file
+
 		loadRecordMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -311,9 +283,7 @@ public class MainPaneController implements Initializable {
 
 			}
 		});
-		/// aboutMenuButton///
-		//This button is opening a new window AboutPanefxml
-		//This allows show about file
+
 		aboutMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -333,7 +303,7 @@ public class MainPaneController implements Initializable {
 		});
 	}
 	
-	//This method is creating a message which contains info about all object loaded from xml record file
+
 	public void printMessage() {
 		for(String record: readXmlRecordDatabase.getMessage()) {
 			setInfoTextArea(record);
@@ -341,22 +311,22 @@ public class MainPaneController implements Initializable {
 		
 	}
 
-	//In this method all species from speciesDatabase all loaded to memory
+
 	public void setSpeciesChoiceBox() {
 		ArrayList<String> speciesList = new ArrayList<String>();
-		//Load all speciesDatabase to memory and create array which contains only name of the species
+
 		speciesDatabaseOperation.setSpeciesStringList();
-		//adding all name string to the list and
+	
 		for (String species : speciesDatabaseOperation.getSpeciesStringList()) {
 			speciesList.add(species);
 		}
-		//and adding this strings to ChoiceBox chooses list
+	
 		ObservableList<String> list = FXCollections.observableArrayList(speciesList);
 		speciesChoiceBox.setItems(list);
 		speciesChoiceBox.getSelectionModel().selectFirst();
 	}
 	
-	//Error which appear when personal data aren't loaded
+	
 	public void messageNoPersonalDataLoaded() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Load personal data.");

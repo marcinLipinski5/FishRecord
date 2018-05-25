@@ -21,12 +21,11 @@ import utils.SpeciesDatabaseOperation;
 
 public class AddFishPaneController implements Initializable {
 
-	// Get instance of all needed class
+
 	SpeciesDatabaseOperation databaseOperation = new SpeciesDatabaseOperation();
 	FishDatabase database = new FishDatabase();
 	ReadXmlSpeciesDatabase xmlDatabase = new ReadXmlSpeciesDatabase();
 
-	// Create arrayList which contains current added fish
 	private static List<FishInDatabase> list = new ArrayList<>();
 
 	@FXML
@@ -49,53 +48,46 @@ public class AddFishPaneController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/////////////////////////////////////////
-		//////// addToDatabaseButton start//////
-		///////////////////////////////////////
+
 		addToDatabaseButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 
-				// Reading existing species database
 				for (FishInDatabase fish : xmlDatabase.getList()) {
 					list.add(fish);
 				}
 
-				// Creating new species. Class "FishInDatabase" is used in this place.
 				addSpecies(addSpeciesTextField.getText(), addMinimumSizeTextField.getText(),
 						protectPeriodStartTextField.getText(), protectPeriodEndTextField.getText());
 				clearTextFields();
 			}
 		});
 
-		/////////////////////////////////////////
-		//////// saveDatabaseButton start///////
-		///////////////////////////////////////
+	
 		saveDatabaseButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//Check the current list of fish species. 
-				if (!list.isEmpty()) {					//If species was added to database (add to database button pressed
-					databaseOperation.setList(list);	//species is added to current list and
-					databaseOperation.sendToXml();		//send to species database xml file.
-					messageDatabaseSaved();				//Inform message pop-up window
+		
+				if (!list.isEmpty()) {					
+					databaseOperation.setList(list);	
+					databaseOperation.sendToXml();		
+					messageDatabaseSaved();				
 				} else {
-					messageNoObjectAddedError();		//If the species wasn't added to database first (addToDatabase 
-				}										//wasn't pressed first) the error pop-up window is shown
+					messageNoObjectAddedError();		 
+				}										
 
 			}
 		});
 		
-	}//End of the initialize method
+	}
 
-	//Adding species to database. FishInDatabase class from data package is used in this method.
+	
 	public void addSpecies(String species, String minSize, String protPerStart, String protPerEnd) {
 
 		list.add(new FishInDatabase(species, minSize, protPerStart, protPerEnd));
 
 	}
 
-	//Clearing all text field to make app more friendly for the users
 	public void clearTextFields() {
 		addSpeciesTextField.clear();
 		addMinimumSizeTextField.clear();
@@ -103,7 +95,6 @@ public class AddFishPaneController implements Initializable {
 		protectPeriodEndTextField.clear();
 	}
 
-	//Message in pop-up window which is shown after successful saved fish species to xml database file
 	public void messageDatabaseSaved() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Database saving");
@@ -111,7 +102,6 @@ public class AddFishPaneController implements Initializable {
 		alert.showAndWait();
 	}
 
-	//Messege in pop-up window which is shown where attempt to save fish species fail
 	public void messageNoObjectAddedError() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("No species to save.");

@@ -5,7 +5,7 @@ import data.FishInDatabase;
 import data.FishInRecord;
 import data.FishRecord;
 
-//Thic class contains all needed variables and methods to operate at fishRecord database
+
 public class FishInRecordOperation {
 	FishDatabase fishDatabase = new FishDatabase();
 	private int currentDay;
@@ -19,18 +19,17 @@ public class FishInRecordOperation {
 	private String protectionSizeInformation;
 	private String fishAdded;
 
-	//In this method a new fishRecord object is created
+
 	public void createNewRecord(String species, String size, String weight, Boolean isRelased) {
 		FishRecord fishRecord = new FishRecord();
 		protectionPeriodInformation = null;
 		protectionSizeInformation = null;
 		fishAdded = null;
 
-		//Adding an object to fish record database
+	
 		fishRecord.add(new FishInRecord(species, size, weight, isRelased, protectionPeriodCheck(species)));
-		//creating string information about new fish record
 		setAddedFish(species, size, weight, isRelased, protectionPeriodCheck(species));
-		//Checking relased check boxes ane creating a string information
+		
 		if (!isRelased) {
 			if (protectionPeriodCheck(species)) {
 				setProtectionPeriodInformation(species, protectionPeriodStartDay, protectionPeriodStartMonth,
@@ -42,8 +41,7 @@ public class FishInRecordOperation {
 		}
 	}
 
-	//comparing the times intervals to check current added object
-	//if fish is under protection period this method returns true
+
 	public Boolean protectionPeriodCheck(String species) {
 		splitCurrentDate();
 		getProtectionValues(species);
@@ -90,8 +88,7 @@ public class FishInRecordOperation {
 		return check;
 	}
 
-	//This method is searching in speciesDatabase for the fish checked by user
-	//then informations about this species are sended to proper values
+
 	public void getProtectionValues(String species) {
 
 		for (FishInDatabase fish : fishDatabase.getFishDatabase()) {
@@ -104,7 +101,7 @@ public class FishInRecordOperation {
 		}
 	}
 
-	//Split string to two separate integer number
+
 	public void splitProtectionPeriodStart(String date) {
 		protectionPeriodStartDay = parseToInt(splitDate(date)[0]);
 		protectionPeriodStartMonth = parseToInt(splitDate(date)[1]);
@@ -123,7 +120,7 @@ public class FishInRecordOperation {
 
 	}
 
-	//Parsing string to integer
+
 	public Integer parseToInt(String string) {
 		int number;
 		try {
@@ -135,7 +132,7 @@ public class FishInRecordOperation {
 		return number;
 	}
 
-	//Parsing String to double
+
 	public Double parseToDouble(String string) {
 		double number;
 		try {
@@ -146,21 +143,21 @@ public class FishInRecordOperation {
 		return number;
 	}
 
-	//Split string to parts
+	
 	public String[] splitDate(String date) {
 		String[] parts = date.split("/");
 
 		return parts;
 	}
 
-	//Set information string about protection period
+
 	public void setProtectionPeriodInformation(String species, int ppsd, int ppsm, int pped, int ppem) {
 		protectionPeriodInformation = "This fish " + "(" + species + ")" + " is under protection now. "
 				+ "Protection period runs from: " + ppsd + "/" + ppsm + " to: " + pped + "/" + ppem
 				+ " You must relase it.\n";
 	}
 
-	//Set information string about protection size
+
 	public void setProtectionSizeInformation(String species, Double size) {
 		protectionSizeInformation = "This fish (" + species + ") is smaller than minimum size: " + size
 				+ "cm. You mast relase it.\n";
@@ -174,7 +171,7 @@ public class FishInRecordOperation {
 		return protectionSizeInformation;
 	}
 
-	//Set information string about fish added to record
+	
 	public void setAddedFish(String species, String size, String weight, Boolean isRelased, Boolean protectionPeriod) {
 		fishAdded = species + ", " + size + ", " + weight + ". Was relased: " + isRelased
 				+ ". Was under protection period: " + protectionPeriod + "\n";

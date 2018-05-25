@@ -7,7 +7,7 @@ import javax.xml.bind.Marshaller;
 
 import data.FishDatabase;
 
-//This class is sending speciesDatabase to predefined xml file
+
 public class CreateXmlSpeciesDatabase {
 	
 	File database = new File("database.xml");

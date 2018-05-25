@@ -15,7 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import data.FishDatabase;
 
-//In this class speciesDatabase is loaded
+
 public class ReadXmlSpeciesDatabase {
 	File database = new File("database.xml");
 	public static List<FishInDatabase> list = new ArrayList<>();

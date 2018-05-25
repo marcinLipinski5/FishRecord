@@ -6,7 +6,7 @@ import java.util.List;
 import data.FishInDatabase;
 import data.FishDatabase;
 
-//This class contain all methods and variables necessaries to operate speciesDatabase
+
 public class SpeciesDatabaseOperation {
 	FishDatabase dataBase = new FishDatabase();
 	private static List<FishInDatabase> list = new ArrayList<>();

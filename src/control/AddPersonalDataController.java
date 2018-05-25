@@ -21,12 +21,10 @@ import utils.ReadXmlAnglerDatabase;
 
 public class AddPersonalDataController implements Initializable {
 
-	// Get instance of all needed class
 	AnglerDatabase anglerDatabase = new AnglerDatabase();
 	CreateXmlAnglerDatabase createXmlAnglerDatabase = new CreateXmlAnglerDatabase();
 	ReadXmlAnglerDatabase readXmlAnglerDatabase = new ReadXmlAnglerDatabase();
-	
-	//Creating list to keep angler personal data
+
 	List<AnglerDatabase> list = new ArrayList<>();
 
 	@FXML
@@ -46,40 +44,33 @@ public class AddPersonalDataController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/////////////////////////////////////////
-		//////// saveAnglerDataButton start/////
-		///////////////////////////////////////
+
 		saveAnglerDataButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 
-				//clearing anglerDatabase array - only one angler can by write in single file
-				anglerDatabase.getAnglerDatabase().clear();		
-				//Adding angler to anglerDatabase. Angler class from package data is used in this place
-				addAngler(anglerNameTextField.getText(), anglerSurnameTextField.getText(), anglerIdNumberTextField.getText());
+				anglerDatabase.getAnglerDatabase().clear();
+
+				addAngler(anglerNameTextField.getText(), anglerSurnameTextField.getText(),
+						anglerIdNumberTextField.getText());
 
 			}
 		});
 
-	}//Initialize method ends
-
-	//Adding angler to anglerDatabase. Angler class from package data is used in this place
+	}
+	
 	public void addAngler(String name, String surname, String idNumber) {
 		anglerDatabase.add(new Angler(name, surname, idNumber));
 		setFile();
 	}
 
-	//Selecting file to save angler personals from anglerDatabase
+	
 	public void setFile() {
 		FileChooser fileChooser = new FileChooser();
-		// Set filters
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
 		fileChooser.getExtensionFilters().add(extFilter);
-		// Use predefined file name
 		fileChooser.setInitialFileName(anglerNameTextField.getText() + "_" + anglerSurnameTextField.getText());
-		//Show save file dialog window
 		File file = fileChooser.showSaveDialog(null);
-		//Parse anglerDatabase to xml file. Class CreateXmlAnglerDatabase from package utils is used
 		if (file != null) {
 			createXmlAnglerDatabase.addAnglerToXML(anglerDatabase, file);
 		}

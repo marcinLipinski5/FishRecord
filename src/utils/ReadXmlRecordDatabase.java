@@ -13,7 +13,7 @@ import data.FishInRecord;
 import data.FishRecord;
 import javafx.stage.FileChooser;
 
-//In this class recordDatabase is loaded from xml file
+
 public class ReadXmlRecordDatabase {
 	FishRecord fishRecord = new FishRecord();
 	CreateXmlRecordDatabase createXmlRecordDatabase = new CreateXmlRecordDatabase();
@@ -28,13 +28,13 @@ public class ReadXmlRecordDatabase {
 	
 	}
 
-	//Chose a file which contains recordDatabase
+
 	public void readFile() {
 		FileChooser fileChooser = new FileChooser();
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.XML)", "*.XML");
 		fileChooser.getExtensionFilters().add(extFilter);
 
-		// Show save file dialog
+	
 		File file = fileChooser.showOpenDialog(null);
 		if (file != null) {
 			try {
@@ -47,7 +47,7 @@ public class ReadXmlRecordDatabase {
 	}
 	
 	
-	//Create information string about loaded fishRecord
+	
 	public void printRecord() {
 
 		for (FishInRecord fish : fishRecord.getFishRecord()) {

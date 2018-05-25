@@ -2,7 +2,7 @@ package data;
 
 import javax.xml.bind.annotation.XmlElement;
 
-//Class Angler is creating an angler personal data
+
 public class Angler {
 	
 	

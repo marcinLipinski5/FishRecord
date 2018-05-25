@@ -17,7 +17,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		
-		//Create main frame using MainPane.fxml file
+	
 		try {
 			Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/gui/MainPane.fxml"));
 			Scene scene = new Scene(parent);

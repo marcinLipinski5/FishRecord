@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import utils.CurrentDate;
 
-//This class is creating objects which are added to record database
+
 public class FishInRecord extends Fish {
 	
 

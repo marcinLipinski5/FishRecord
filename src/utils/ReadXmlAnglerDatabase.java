@@ -12,7 +12,7 @@ import data.AnglerDatabase;
 
 import javafx.stage.FileChooser;
 
-//In this class angler personal data are loaded from xml file
+
 public class ReadXmlAnglerDatabase {
 	
 
@@ -27,15 +27,15 @@ public class ReadXmlAnglerDatabase {
 	}
 
 
-	//Choose the file which contains proper angler database
+
 	public void readFile() {
 	     FileChooser fileChooser = new FileChooser();
          
-         //Set extension filter
+
          FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.XML)", "*.XML");
          fileChooser.getExtensionFilters().add(extFilter);
           
-         //Show save file dialog
+    
          File file = fileChooser.showOpenDialog(null);
          if(file != null){
              try {

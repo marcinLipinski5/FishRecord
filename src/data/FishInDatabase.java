@@ -2,7 +2,7 @@ package data;
 
 import javax.xml.bind.annotation.XmlElement;
 
-//This class is creating objects which are added to species database
+
 public class FishInDatabase extends Fish {
 
 	private String minimumSize;

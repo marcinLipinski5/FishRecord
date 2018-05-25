@@ -6,8 +6,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
  
-//Class FishrDatabase contains method to create fishDatabase array.
-//This array contains species object
+
 @XmlRootElement(name="FishDatabase")
 public class FishDatabase {
    private static List<FishInDatabase> fishDatabase = new ArrayList<FishInDatabase>();
