@@ -4,18 +4,15 @@ import javax.xml.bind.annotation.XmlElement;
 
 import utils.CurrentDate;
 
-
 public class FishInRecord extends Fish {
 	
-
 	String size;
 	String weight;
 	Boolean relased = true;
 	Boolean protectionPeriod = true;
 	String date;
 	
-	public FishInRecord () {
-		
+	public FishInRecord () {	
 	}
 	
 	public FishInRecord(String species, String size, String weight, Boolean relased, Boolean protectionPeriod ) {
@@ -24,8 +21,7 @@ public class FishInRecord extends Fish {
 		setWeight(weight);
 		setRelased(relased);
 		setProtectionPeriod(protectionPeriod);
-		setDate(new CurrentDate().getCurrentDate());
-		
+		setDate(new CurrentDate().getCurrentDate());	
 	}
 
 	@XmlElement(name = "Date")
@@ -72,7 +68,4 @@ public class FishInRecord extends Fish {
 	public void setProtectionPeriod(Boolean protectionPeriod) {
 		this.protectionPeriod = protectionPeriod;
 	}
-	
-	
-
 }

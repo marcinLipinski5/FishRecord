@@ -2,16 +2,12 @@ package data;
 
 import javax.xml.bind.annotation.XmlElement;
 
-
 public class Angler {
-	
 	
 	private String name;
 	private String surname;
 	private String idNumber;
-	
-	public Angler() {
-		
+	public Angler() {	
 	}
 	
 	public Angler (String name, String surname, String idNumber) {

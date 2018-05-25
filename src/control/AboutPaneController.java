@@ -1,6 +1,5 @@
 package control;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,8 +34,6 @@ public class AboutPaneController implements Initializable {
 				+ " – Generator of *.pdf report suitable to PZW table.\n"
 				+ " – Automatic check angler localization using GPS system.\n"
 				+ " – More user-friendly interface. ";
-		abuotTextArea.appendText(about);
-		
+		abuotTextArea.appendText(about);	
 	}
-
 }

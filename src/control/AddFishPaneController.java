@@ -20,8 +20,6 @@ import utils.ReadXmlSpeciesDatabase;
 import utils.SpeciesDatabaseOperation;
 
 public class AddFishPaneController implements Initializable {
-
-
 	SpeciesDatabaseOperation databaseOperation = new SpeciesDatabaseOperation();
 	FishDatabase database = new FishDatabase();
 	ReadXmlSpeciesDatabase xmlDatabase = new ReadXmlSpeciesDatabase();
@@ -52,22 +50,19 @@ public class AddFishPaneController implements Initializable {
 		addToDatabaseButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-
 				for (FishInDatabase fish : xmlDatabase.getList()) {
 					list.add(fish);
 				}
-
 				addSpecies(addSpeciesTextField.getText(), addMinimumSizeTextField.getText(),
 						protectPeriodStartTextField.getText(), protectPeriodEndTextField.getText());
 				clearTextFields();
 			}
 		});
 
-	
+
 		saveDatabaseButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-		
 				if (!list.isEmpty()) {					
 					databaseOperation.setList(list);	
 					databaseOperation.sendToXml();		
@@ -75,17 +70,12 @@ public class AddFishPaneController implements Initializable {
 				} else {
 					messageNoObjectAddedError();		 
 				}										
-
 			}
-		});
-		
+		});	
 	}
 
-	
 	public void addSpecies(String species, String minSize, String protPerStart, String protPerEnd) {
-
 		list.add(new FishInDatabase(species, minSize, protPerStart, protPerEnd));
-
 	}
 
 	public void clearTextFields() {

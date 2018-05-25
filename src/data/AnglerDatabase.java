@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
  
-
 @XmlRootElement(name="AnglerDatabase")
 public class AnglerDatabase {
    private static List<Angler> angler = new ArrayList<Angler>();
@@ -22,6 +21,5 @@ public class AnglerDatabase {
  
     public void setAnglerDatabase(List<Angler> angler) {
         AnglerDatabase.angler = angler;
-    }
-    
+    }   
 }

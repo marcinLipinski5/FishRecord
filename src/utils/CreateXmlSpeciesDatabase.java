@@ -7,25 +7,19 @@ import javax.xml.bind.Marshaller;
 
 import data.FishDatabase;
 
-
 public class CreateXmlSpeciesDatabase {
 	
 	File database = new File("database.xml");
-
-
+	
 	public void addToXML(FishDatabase dataBase) {
-		
-
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(data.FishDatabase.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
 			jaxbMarshaller.marshal(dataBase, System.out);
 			jaxbMarshaller.marshal(dataBase, database);
 		} catch (JAXBException ex) {
 			ex.printStackTrace();
 		}
 	}
-
 }

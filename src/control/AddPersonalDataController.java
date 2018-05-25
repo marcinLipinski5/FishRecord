@@ -2,7 +2,6 @@ package control;
 
 import java.io.File;
 import java.net.URL;
-import java.security.acl.Owner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,7 +23,7 @@ public class AddPersonalDataController implements Initializable {
 	AnglerDatabase anglerDatabase = new AnglerDatabase();
 	CreateXmlAnglerDatabase createXmlAnglerDatabase = new CreateXmlAnglerDatabase();
 	ReadXmlAnglerDatabase readXmlAnglerDatabase = new ReadXmlAnglerDatabase();
-
+	
 	List<AnglerDatabase> list = new ArrayList<>();
 
 	@FXML
@@ -48,15 +47,11 @@ public class AddPersonalDataController implements Initializable {
 		saveAnglerDataButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-
 				anglerDatabase.getAnglerDatabase().clear();
-
 				addAngler(anglerNameTextField.getText(), anglerSurnameTextField.getText(),
 						anglerIdNumberTextField.getText());
-
 			}
 		});
-
 	}
 	
 	public void addAngler(String name, String surname, String idNumber) {
@@ -64,7 +59,6 @@ public class AddPersonalDataController implements Initializable {
 		setFile();
 	}
 
-	
 	public void setFile() {
 		FileChooser fileChooser = new FileChooser();
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");

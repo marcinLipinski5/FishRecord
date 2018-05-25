@@ -2,7 +2,6 @@ package data;
 
 import javax.xml.bind.annotation.XmlElement;
 
-
 public class FishInDatabase extends Fish {
 
 	private String minimumSize;
@@ -10,7 +9,6 @@ public class FishInDatabase extends Fish {
 	private String protectionPeriodEnd;
 
 	public FishInDatabase() {
-
 	}
 
 	public FishInDatabase(String species, String minimumSize, String protectionPeriodStart,
@@ -19,7 +17,6 @@ public class FishInDatabase extends Fish {
 		setMinimumSize(minimumSize);
 		setProtectionPeriodStart(protectionPeriodStart);
 		setProtectionPeriodEnd(protectionPeriodEnd);
-
 	}
 
 	@XmlElement(name = "MinimumSize")
@@ -48,5 +45,4 @@ public class FishInDatabase extends Fish {
 	public void setProtectionPeriodEnd(String protectionPeriodEnd) {
 		this.protectionPeriodEnd = protectionPeriodEnd;
 	}
-
 }

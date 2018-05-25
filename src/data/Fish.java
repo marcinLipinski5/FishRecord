@@ -10,8 +10,7 @@ public abstract class Fish {
 		setSpecies(species);
 	}
 	
-	public Fish() {
-		
+	public Fish() {	
 	}
 
 	public void setSpecies(String species) {

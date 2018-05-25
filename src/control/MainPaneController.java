@@ -1,6 +1,4 @@
 package control;
-
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +38,6 @@ import utils.SpeciesDatabaseOperation;
 
 public class MainPaneController implements Initializable {
 
-	
 	AnglerDatabase anglerDatabase = new AnglerDatabase();
 	SpeciesDatabaseOperation speciesDatabaseOperation = new SpeciesDatabaseOperation();
 	FishInRecordOperation fishInRecordOperation = new FishInRecordOperation();
@@ -108,8 +105,7 @@ public class MainPaneController implements Initializable {
 		return sizeTextField.getText();
 	}
 
-	public Boolean getIsRelasedCheckBox() {
-		
+	public Boolean getIsRelasedCheckBox() {	
 		Boolean temp = true;
 		if(relasedCheckBoxYes.isSelected()) {
 			temp = true;
@@ -124,31 +120,24 @@ public class MainPaneController implements Initializable {
 		
 		initializeSpeciesDatabase();
 		
-
 		addToRecordButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
 
 				anglerDatabase.getAnglerDatabase().get(0);
-		
 				fishInRecordOperation.createNewRecord(getSpeciesChoiceBox(), getSizeTextField(), getWeightTextField(), getIsRelasedCheckBox() );
-			
 				setInfoTextArea(fishInRecordOperation.getAddedFish());
 				setInfoTextArea(fishInRecordOperation.getProtectionPeriodInformation());
 				setInfoTextArea(fishInRecordOperation.getProtectionSizeInformation());
 				setInfoTextArea("----------------------------------------------------\n");
-				
 				createXmlRecordDatabase.saveRecord();
 				}catch(IndexOutOfBoundsException ex) {
-		
 					messageNoPersonalDataLoaded();
 				}
-				
 			}
 		});
 
-	
 		clearButton.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -156,25 +145,19 @@ public class MainPaneController implements Initializable {
 				weightTextField.clear();
 			}
 		});
-		
 
 		CurrentDate currentDate = new CurrentDate();
 		dateLabel.setText(currentDate.getCurrentDate());
-	
 		personalDataLabel.setText("Please load personal data");
-
-
 		setSpeciesChoiceBox();
-
-	
 		relasedCheckBoxYes.setSelected(true);
+		
 		relasedCheckBoxYes.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				relasedCheckBoxNo.setSelected(false);
 				relasedCheckBoxYes.setSelected(true);
 			}
-
 		});
 
 		relasedCheckBoxNo.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
@@ -183,14 +166,9 @@ public class MainPaneController implements Initializable {
 				relasedCheckBoxYes.setSelected(false);
 				relasedCheckBoxNo.setSelected(true);
 			}
-
 		});
 		
-		
-
-
 		menuButtons();		
-
 	}
 
 	public void setInfoTextArea(String information) {
@@ -199,33 +177,24 @@ public class MainPaneController implements Initializable {
 		}
 	}
 	
-
 	public void readPersonalData() {
 		ReadXmlAnglerDatabase xmlAnglerDatabase = new ReadXmlAnglerDatabase();
 		xmlAnglerDatabase.readFile();
 	}
 
-
 	public void setPersonalData() {
 		String personals = null;
-
 		if (anglerDatabase.getAnglerDatabase().get(0) != null) {
 			personals = anglerDatabase.getAnglerDatabase().get(0).getName() + " "
 					+ anglerDatabase.getAnglerDatabase().get(0).getSurname() + " "
 					+ anglerDatabase.getAnglerDatabase().get(0).getIdNumber();
-
 		} else {
-
 			personals = "Pleace load proper personals data";
 		}
-
 		personalDataLabel.setText(personals);
-
 	}
 
-
 	public void menuButtons() {
-
 		addSpeciesMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -244,7 +213,6 @@ public class MainPaneController implements Initializable {
 			}
 		});
 		
-
 		addPersonalDataMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -263,24 +231,20 @@ public class MainPaneController implements Initializable {
 			}
 		});
 
-
 		loadPersonalDataMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				readPersonalData();
 				setPersonalData();
-
 			}
 		});
 
 		loadRecordMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent arg0) {
-				
+			public void handle(ActionEvent arg0) {	
 				readXmlRecordDatabase.readFile();
 				readXmlRecordDatabase.printRecord();
 				printMessage();
-
 			}
 		});
 
@@ -303,29 +267,22 @@ public class MainPaneController implements Initializable {
 		});
 	}
 	
-
 	public void printMessage() {
 		for(String record: readXmlRecordDatabase.getMessage()) {
 			setInfoTextArea(record);
-		}
-		
+		}	
 	}
-
 
 	public void setSpeciesChoiceBox() {
 		ArrayList<String> speciesList = new ArrayList<String>();
-
 		speciesDatabaseOperation.setSpeciesStringList();
-	
 		for (String species : speciesDatabaseOperation.getSpeciesStringList()) {
 			speciesList.add(species);
 		}
-	
 		ObservableList<String> list = FXCollections.observableArrayList(speciesList);
 		speciesChoiceBox.setItems(list);
 		speciesChoiceBox.getSelectionModel().selectFirst();
 	}
-	
 	
 	public void messageNoPersonalDataLoaded() {
 		Alert alert = new Alert(AlertType.ERROR);

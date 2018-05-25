@@ -5,17 +5,14 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-
 import data.AnglerDatabase;
 import data.FishRecord;
 import javafx.stage.FileChooser;
-
 
 public class CreateXmlRecordDatabase {
 	FileChooser fileChooser = new FileChooser();
 	AnglerDatabase anglerDatabase = new AnglerDatabase();
 	FishRecord fishRecord = new FishRecord();
-	
 	
 	private static File file;
 
@@ -26,7 +23,6 @@ public class CreateXmlRecordDatabase {
 	public void setFile(File file) {
 		CreateXmlRecordDatabase.file = file;
 	}
-
 
 	public void sellectFile() {
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
@@ -40,9 +36,7 @@ public class CreateXmlRecordDatabase {
 		}
 	}
 
-
 	public void addRecordToXML(FishRecord fishRecord, File file) {
-
 		if (file == null) { 
 			sellectFile();
 		} else {
@@ -59,7 +53,6 @@ public class CreateXmlRecordDatabase {
 		}
 	}
 	
-	
 	public void saveRecord() {
 		Boolean error = false;
 		try {
@@ -70,8 +63,6 @@ public class CreateXmlRecordDatabase {
 		}
 		if(!error) {
 			addRecordToXML(fishRecord, file);	
-		}
-			
+		}		
 	}
-
 }
